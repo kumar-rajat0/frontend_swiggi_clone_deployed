@@ -10,7 +10,7 @@ function Login(props) {
       e.preventDefault();
 
   console.log("Register clicked");
-   const response = fetch("http://localhost:8080/api/register", {
+   const response = fetch("https://backend-swiggi-clone-deployed.onrender.com/api/register", {
    method: "POST",
    headers: {
     "Content-Type": "application/json",
@@ -36,7 +36,7 @@ result.then((data)=>{
     e.preventDefault();
 
   console.log("Login clicked");
-   const response = fetch("http://localhost:8080/api/login", {
+   const response = fetch("https://backend-swiggi-clone-deployed.onrender.com/api/login", {
    method: "POST",
    headers: {
     "Content-Type": "application/json",
