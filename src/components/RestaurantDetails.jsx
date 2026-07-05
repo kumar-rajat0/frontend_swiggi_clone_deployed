@@ -87,7 +87,7 @@ function RestaurantDetails() {
 
             {/* ADD BUTTON */}
             <button
-              className="border bg-green-300 h-8 relative top-16 right-5 focus:bg-red-700 px-2"
+              className="border bg-green-300 h-8 relative top-16 right-5 focus:bg-red-800 px-2"
               onClick={() => handleAddItem(foodItem)}
             >
               Add +
@@ -98,5 +98,6 @@ function RestaurantDetails() {
     </div>
   );
 }
+
 
 export default RestaurantDetails;
