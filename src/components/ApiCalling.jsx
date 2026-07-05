@@ -1,33 +1,37 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function ApiCalling() {
-  const [allrestaurants, setAllRestaurants] = useState([]);
+function useApiCalling() {
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    const Api =
-      "https://backend-swiggi-clone-deployed.onrender.com/api/swiggy-restaurants";
-
-    async function calling() {
+    async function fetchData() {
       try {
-        let resp = await axios.get(Api);
+        const resp = await axios.get(
+          "https://backend-swiggi-clone-deployed.onrender.com/api/swiggy-restaurants"
+        );
 
-        const cards = resp.data?.data?.cards;
+        const cards = resp.data?.data?.cards || [];
 
-        const restaurants = cards?.find((c) => {
-          return c?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-        })?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        const restaurants =
+          cards
+            .map(
+              c =>
+                c?.card?.card?.gridElements?.infoWithStyle?.restaurants
+            )
+            .find(Boolean) || [];
 
-        setAllRestaurants(restaurants || []);
+        setData(restaurants);
       } catch (err) {
-        console.log("API error:", err);
+        console.log(err);
+        setData([]);
       }
     }
 
-    calling();
+    fetchData();
   }, []);
 
-  return allrestaurants;
+  return data;
 }
 
-export default ApiCalling;
+export default useApiCalling;
